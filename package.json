@@ -38,6 +38,5 @@
     "extendscript",
     "minifier",
     "minify"
-  ],
-  "private": true
+  ]
 }
