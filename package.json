@@ -1,0 +1,43 @@
+{
+  "name": "grunt-esmin",
+  "description": "A minimal Grunt plugin that concatenates and minifies ExtendScript files.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/fcamarlinghi/grunt-esmin",
+  "author": {
+    "name": "Francesco Camarlinghi",
+    "email": "me@minifloppy.it",
+    "url": "http://www.minifloppy.it/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fcamarlinghi/grunt-esmin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fcamarlinghi/grunt-esmin/issues"
+  },
+  "licenses": [
+    {
+      "type": "APACHE-2.0",
+      "url": "https://github.com/fcamarlinghi/grunt-esmin/blob/master/LICENSE-APACHE-2.0"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "yuicompressor": "~2.4.8",
+    "async": "~0.7.0"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.4"
+  },
+  "keywords": [
+    "adobe",
+    "grunt plugin",
+    "extendscript",
+    "minifier",
+    "minify"
+  ],
+  "private": true
+}
