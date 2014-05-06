@@ -68,8 +68,11 @@ module.exports = function (grunt)
         var done = this.async(),
             tasks = [];
 
-        if (!this.files.length)
-            callback();
+        if (this.files.length === 0)
+        {
+            done();
+            return;
+        }
 
         this.files.forEach(function (file)
         {
