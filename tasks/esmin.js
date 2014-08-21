@@ -66,6 +66,9 @@ module.exports = function (grunt)
     grunt.registerMultiTask('esmin', 'Concatenates and minifies ExtendScript files using YUI compressor.', function ()
     {
         var done = this.async(),
+            options = this.options({
+                compress: true
+            }),
             tasks = [];
 
         if (this.files.length === 0)
@@ -101,18 +104,35 @@ module.exports = function (grunt)
                 return grunt.file.read(filepath);
             }).join('\n');
 
-            // Enqueue minifier taks
-            tasks.push(function (callback)
+            if (options.compress)
             {
-                var message = 'Minifying: ' + file.src.join(', ').cyan + ' to ' + file.dest.cyan + '...';
+                // Enqueue minifier taks
+                tasks.push(function (callback)
+                {
+                    var message = 'Minifying: ' + file.src.join(', ').cyan + ' to ' + file.dest.cyan + '...';
+                    grunt.verbose.writeln(message).or.write(message);
+                    minifier(function () { grunt.verbose.or.ok(); callback(); }, concatenated, file.dest);
+                });
+            }
+            else
+            {
+                // Saved concatenated file
+                var message = 'Concatenating: ' + file.src.join(', ').cyan + ' to ' + file.dest.cyan + '...';
                 grunt.verbose.writeln(message).or.write(message);
-                minifier(function () { grunt.verbose.or.ok(); callback(); }, concatenated, file.dest);
-            });
+                grunt.file.write(file.dest, concatenated);
+                grunt.verbose.or.ok();
+            }
         });
 
-        // Run minifier
-        async.series(tasks,
-            function (err, result) { done(err, result); }
-        );
+        if (options.compress)
+        {
+            // Run minifier
+            async.series(tasks, function (err, result) { done(err, result); });
+        }
+        else
+        {
+            // We're done
+            done();
+        }
     });
 };

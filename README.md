@@ -31,7 +31,13 @@ _Run this task with the `grunt esmin` command._
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 ### Options
-The plugin exposes no configuration options.
+
+#### compress
+Type: `Boolean`
+
+Default: `true`
+
+Whether to compress the output using YUI Compressor. If `false`, the task will only concatenates the files.
 
 ## Usage Examples
 
